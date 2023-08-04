@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Gestion du personnel{% endblock %}
+
+{% block body %}
+<h1 class="text-center my-4 p-4">Liste des employés</h1>
+<div class="container mt-5">
+    <table class="table table-dark table-striped ">
+        <caption>Liste employés</caption>
+        <thead>
+            <tr >
+                <th class="text-center">#</th>
+                <th class="text-center">prenom</th>
+                <th class="text-center">nom</th>
+                <th class="text-center">telephone</th>
+                <th class="text-center">email</th>
+                <th class="text-center">adresse postal</th>
+                <th>poste</th>
+                <th>salaire</th>
+                <th>date de naissance</th>
+                <th>option</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employes in employes %}
+                
+                <tr>
+                    <td>{{ employes.id }}</td>
+                    <td>{{ employes.nom }}</td>
+                    <td>{{ employes.prenom }}</td>
+                    <td>{{ employes.telephone }}</td>
+                    <td>{{ employes.email }}</td>
+                    <td>{{ employes.adresse }}</td>
+                    <td>{{ employes.poste }}</td>
+                    <td>{{ employes.salaire }}</td>
+                    <td>{{ employes.datedenaissance|date('d/m/Y ') }}</td>
+                    <td>
+                        <a href="{{ path('app_show', {id: employes.id} ) }}" class="text-info">Voir</a>
+                        <a href="{{ path('app_modifier', {id: employes.id} )}}" class="text-warning "><i class="bi bi-brush-fill"></i></a>
+                        <a href="{{ path('app_supprimer', {id: employes.id} )}}" class="text-danger"><i class="bi bi-basket"></i></a>
+                    </td>  
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
